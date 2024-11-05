@@ -101,7 +101,7 @@ def insert_book(conn: Connection, book: Book) -> None:
     
     query = """
     INSERT INTO books (isbn, title, author, year, publisher)
-    VALUES (?, ?, ?, ?, ?)
+    VALUES (%s, %s, %s, %s, %s)
     """
 
     # Using parameterized queries to avoid SQL injection
@@ -118,7 +118,7 @@ def insert_rating(conn: Connection, rating: Rating) -> None:
     
     query = """
     INSERT INTO ratings (isbn, rating)
-    VALUES (?, ?)
+    VALUES (%s, %s)
     """
 
     # Using parameterized queries to avoid SQL injection
