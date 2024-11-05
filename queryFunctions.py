@@ -91,6 +91,39 @@ def insert_user(conn: Connection, id: str, location: str, age: int):
 
     conn.execute(query, (id, location, age))
 
+def insert_book(conn: Connection, book: Book) -> None:
+    """
+    Insert a book into book table 
+    :param conn: Connection - a database connection
+    :param title: book, book data i.e isbn, author, year, publisher
+    :return: None
+    """
+    
+    query = """
+    INSERT INTO books (isbn, title, author, year, publisher)
+    VALUES (?, ?, ?, ?, ?)
+    """
+
+    # Using parameterized queries to avoid SQL injection
+    conn.execute(query, (book.isbn, book.title, book.author, book.year, book.publisher))
+    conn.commit()
+
+def insert_rating(conn: Connection, rating: Rating) -> None:
+    """
+    Insert a rating into rating table 
+    :param conn: Connection - a database connection
+    :param title: book, book data i.e isbn, author, year, publisher
+    :return: None
+    """
+    
+    query = """
+    INSERT INTO ratings (isbn, rating)
+    VALUES (?, ?)
+    """
+
+    # Using parameterized queries to avoid SQL injection
+    conn.execute(query, (rating.isbn, rating.rating))
+    conn.commit()  # Commit the transaction
 
 def top_authors(conn: Connection, n: int) -> List[Tuple[str, int]]:
     """
