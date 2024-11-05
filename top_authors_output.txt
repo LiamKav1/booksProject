@@ -1,0 +1,9 @@
++---------------------+-------------------+
+| Author              |   Number of Books |
+|---------------------+-------------------|
+| Agatha Christie     |               632 |
+| William Shakespeare |               567 |
+| Stephen King        |               524 |
+| Ann M. Martin       |               423 |
+| Carolyn Keene       |               373 |
++---------------------+-------------------+

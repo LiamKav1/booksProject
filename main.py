@@ -26,24 +26,24 @@ if __name__ == "__main__":
 
 if __name__ == "__main__":
     conn = connect()
-    print("INFO: Got a connection")
 
-    print(tabulate(avg_rating_top_ten(conn), tablefmt= "psql"))
+    header = ["ID", "Number of Ratings", "Average Rating"]
+    print(tabulate(avg_rating_top_ten(conn), headers= header , tablefmt= "psql"))
     conn.close()
 
 
 if __name__ == "__main__":
     conn = connect()
-    print("INFO: Got a connection")
 
-    print(tabulate(top_authors(conn, 5), tablefmt= "psql"))
+    header = ["Author", "Number of Books"]
+    print(tabulate(top_authors(conn, 5),headers = header, tablefmt= "psql"))
     conn.close()
 
 
 
 if __name__ == "__main__":
     conn = connect()
-    print("INFO: Got a connection")
 
-    print(tabulate(top_books_by_ratings(conn, 5), tablefmt= "psql"))
+    header = ["Title", "Author", "num_rating"]
+    print(tabulate(top_books_by_ratings(conn, 5), headers = header,tablefmt= "psql"))
     conn.close()

@@ -2,31 +2,6 @@ from psycopg import Connection
 from typing import List, Tuple
 from ratings import Ratings
 
-def rating_by_isbn(conn: Connection, ISBN, limit = 3) -> List[Ratings]:
-    """
-    Return a list of ratings based on the ISBN.
-    :param conn: Connection - a database connection
-    :param ISBN: str, the ISBN
-    :param limit: int, the number of ratings to return
-    :return: a list of ratings
-    """
-
-    query = """
-    SELECT User_id, ISBN, ratings
-    FROM ratings
-    WHERE ISBN = %s
-    LIMIT %s
-    """
-
-    cursor = conn.execute(query, (ISBN,limit))
-
-    rs = []
-    for row in cursor:
-        rs.append(Ratings(row[0], row[1], row[2]))
-
-    return rs
-
-
 
 
 def avg_rating_top_ten(conn: Connection) -> List[Tuple[str, int, float]]:

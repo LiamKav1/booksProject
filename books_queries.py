@@ -2,36 +2,6 @@ from psycopg import Connection
 from typing import List, Tuple
 from books import Book
 
-# queries that operate only on books table
-
-def get_books_by_title(conn: Connection, title: str, limit = 3) -> List[Book]:
-    """
-    Return a list of books based on the title. By default, only the first 3 books are returned.
-    :param conn: Connection - a database connection
-    :param title: str, the title of book
-    :return: a list of books
-    """
-
-    query = """
-    SELECT id, author,title, year, publisher 
-    FROM books
-    WHERE lower(title) = lower(%s)
-    ORDER BY year
-    LIMIT %s 
-    """
-
-    # TODO: check if connection is still live
-
-    cursor = conn.execute(query, (title, limit))
-
-    rs = []
-    for row in cursor:
-        rs.append(Book(row[0], row[1], row[2], row[3], row[4]))
-
-    return rs
-
-
-
 
 def format_author_for_query(author_name):
     # Remove dots and spaces, then convert to lowercase
@@ -47,21 +17,15 @@ def author_avg_book_rating(conn: Connection, author: str) -> List[Tuple[float, i
     :return: Returns the authors average book rating and the number of books they have published.
     """
 
-    # query = """
-    #     SELECT
-    #         AVG(CAST(rating AS INTEGER)) AS Avg_Rating,
-    #         COUNT(isbn) AS num_books
-    #     FROM books
-    #     NATURAL JOIN ratings
-    #     WHERE LOWER(REPLACE(REPLACE(author, ' ', ''), '.', '')) = %s
-    #     GROUP BY LOWER(REPLACE(REPLACE(author, ' ', ''), '.', ''));
-    #          """
-
     query = """
-    SELECT AVG(ratings) AS avg_rating, COUNT(*) AS num_books
-    FROM books
-    WHERE author ~* %s
-    """
+        SELECT
+            AVG(CAST(rating AS INTEGER)) AS Avg_Rating,
+            COUNT(isbn) AS num_books
+        FROM books
+        NATURAL JOIN ratings
+        WHERE LOWER(REPLACE(REPLACE(author, ' ', ''), '.', '')) = %s
+        GROUP BY LOWER(REPLACE(REPLACE(author, ' ', ''), '.', ''));
+             """
 
     cursor = conn.execute(query, (author,))
 
@@ -71,10 +35,10 @@ def author_avg_book_rating(conn: Connection, author: str) -> List[Tuple[float, i
 
     return rs
 
-    def format_title_for_query(title_name):
-        # Remove dots and spaces, then convert to lowercase
-        normalized_title = title_name.replace(" ", "").replace(".", "").lower()
-        return normalized_title
+def format_title_for_query(title_name):
+    # Remove dots and spaces, then convert to lowercase
+    normalized_title = title_name.replace(" ", "").replace(".", "").lower()
+    return normalized_title
 
 
 # Find a book's average rating. Input is title and author.
@@ -140,7 +104,7 @@ def top_books_by_ratings(conn: Connection, n: int) -> List[Tuple[str, str, int]]
     Returns a list of the top most popular books by number of ratings.
     :param conn: a database connection
     :param n: The number of books to return
-    :return: The list of length n of the most popular books by number of ratings
+    :return: The title, author, and number of ratings of the top n books.
     """
 
     query = """
