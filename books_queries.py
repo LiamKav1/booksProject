@@ -1,4 +1,4 @@
-# Oleg, Liam, Henry
+# Authors: Oleg, Liam, Henry
 
 from psycopg import Connection
 from typing import List, Tuple
