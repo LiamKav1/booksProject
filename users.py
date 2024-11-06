@@ -1,4 +1,6 @@
 # users class
+# Authors: Oleg, Liam, Henry
+
 class Users:
 
     def __init__(self, id: str, location: str, age: str):
