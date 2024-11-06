@@ -15,4 +15,11 @@ class TestRatings(unittest.TestCase):
             self.assertEqual(x, f.read())
         conn.close()
 
+    def test_insert_rating(self):
+        conn = connect()
+        prating = Ratings(123, 100, 5)
+        nrating = Ratings(274308, 0449205983, 0)
+        assert insert_rating(conn, prating) == True
+        assert insert_rating(conn, nrating) == False
+
 
