@@ -1,5 +1,9 @@
 # Authors: Oleg, Liam, Henry
 
+from book import Book
+from book_queries import insert_book
+from ratings import Ratings
+from ratings_queries import insert_rating
 from ratings_queries import avg_rating_top_ten
 from books_queries import top_authors
 from books_queries import top_books_by_ratings
@@ -48,4 +52,18 @@ if __name__ == "__main__":
 
     header = ["Title", "Author", "num_rating"]
     print(tabulate(top_books_by_ratings(conn, 5), headers = header,tablefmt= "psql"))
+    conn.close()
+
+if __name__ == "__main__":
+    conn = connect()
+    print("INFO: Got a connection")
+    pbook = Book("100", "Harry Potter", "J.K Rowling", 1999, "British Publisher")
+    print(insert_book(conn, pbook))
+    conn.close()
+
+if __name__ == "__main__":
+    conn = connect()
+    print("INFO: Got a connection")
+    prating = Ratings("123", "100", "5")    
+    print(insert_rating(conn, prating))
     conn.close()
