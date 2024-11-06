@@ -1,0 +1,19 @@
+
+    def test_avg_book_rating_by_author(self):
+        conn = connect()
+        header = ["Avg Rating", "#books"]
+        x = tabulate(books_queries.author_avg_book_rating(conn, "A. A. Milne"), headers = header, tablefmt = "psql")
+        with open("gold/avg_book_rating_by_author.txt", "r") as f:
+            self.assertEqual(x, f.read())
+        conn.close()
+    
+    
+
+
+    def test_book_avg_rating(self):
+        conn = connect()
+        header = ["Avg Rating", "#books"]
+        x = tabulate(books_queries.books_avg_rating(conn, "A. A. Milne", "Winnie the Pooh"), headers=header, tablefmt="psql")
+        with open("gold/book_avg_rating.txt", "r") as f:
+            self.assertEqual(x, f.read())
+        conn.close()
