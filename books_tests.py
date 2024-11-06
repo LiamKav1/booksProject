@@ -25,3 +25,9 @@ class booksTests(unittest.TestCase):
         with open("gold/top_books_by_rating_output.txt", "r") as f:
             self.assertEqual(x, f.read())
         conn.close()
+
+    def test_insert_book(self):
+        conn = connect()
+        nbook = Book(0195153448, "Classical Mythology", "Mark P. O. Morford", 2002, Oxford Univeristy Press)
+        pbook = Book(100, "Harry Potter", "J.K Rowling", 1999, British Publisher)
+        insert_book(conn, pbook)
