@@ -5,6 +5,7 @@ from tabulate import tabulate
 import books_queries
 from connect import connect
 from books_queries import top_authors
+from books import Book
 
 
 
@@ -28,10 +29,10 @@ class booksTests(unittest.TestCase):
             self.assertEqual(x, f.read())
         conn.close()
 
-    def test_insert_book():
+    def test_insert_book(self):
         conn = connect()
-        nbook = Book(0195153448, "Classical Mythology", "Mark P. O. Morford", 2002, Oxford Univeristy Press)
-        pbook = Book(100, "Harry Potter", "J.K Rowling", 1999, British Publisher)
-        assert insert_book(conn, pbook) == True
-        assert insert_book(conn, nbook) == False
+        nbook = Book("0195153448", "Classical Mythology", "Mark P. O. Morford", 2002, "Oxford Univeristy Press")
+        pbook = Book("100", "Harry Potter", "J.K Rowling", 1999, "British Publisher")
+        assert book_queries.insert_book(conn, pbook) == True
+        assert book_queries.insert_book(conn, nbook) == False
         
