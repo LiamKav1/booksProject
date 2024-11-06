@@ -23,5 +23,6 @@ class TestRatings(unittest.TestCase):
         nrating = Ratings("274308", "0449205983", "0")
         assert ratings_queries.insert_rating(conn, prating) == True
         assert ratings_queries.insert_rating(conn, nrating) == False
+        conn.close()
 
 
