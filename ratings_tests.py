@@ -5,6 +5,7 @@ import ratings_queries
 import unittest
 from connect import connect
 from ratings_queries import avg_rating_top_ten
+from ratings import Ratings
 
 
 class TestRatings(unittest.TestCase):
@@ -16,11 +17,11 @@ class TestRatings(unittest.TestCase):
             self.assertEqual(x, f.read())
         conn.close()
 
-    def test_insert_rating():
+    def test_insert_rating(self):
         conn = connect()
         prating = Ratings(123, 100, 5)
         nrating = Ratings(274308, 0449205983, 0)
-        assert insert_rating(conn, prating) == True
-        assert insert_rating(conn, nrating) == False
+        assert ratings_queries.insert_rating(conn, prating) == True
+        assert ratings_queries.insert_rating(conn, nrating) == False
 
 
