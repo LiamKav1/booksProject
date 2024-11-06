@@ -1,4 +1,5 @@
-# Oleg, Liam, Henry
+# Authors: Oleg, Liam, Henry
+
 class Ratings:
 
     def __init__(self, User_id, ISBN, ratings):
