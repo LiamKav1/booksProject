@@ -30,4 +30,6 @@ class booksTests(unittest.TestCase):
         conn = connect()
         nbook = Book(0195153448, "Classical Mythology", "Mark P. O. Morford", 2002, Oxford Univeristy Press)
         pbook = Book(100, "Harry Potter", "J.K Rowling", 1999, British Publisher)
-        insert_book(conn, pbook)
+        assert insert_book(conn, pbook) == True
+        assert insert_book(conn, nbook) == False
+        
