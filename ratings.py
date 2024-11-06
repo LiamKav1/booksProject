@@ -1,3 +1,4 @@
+# ratings class
 # Authors: Oleg, Liam, Henry
 
 class Ratings:
