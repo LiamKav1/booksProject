@@ -135,7 +135,7 @@ def insert_book(conn: Connection, book: Book) -> None:
 
     query = """
     INSERT INTO books (isbn, title, author, year, publisher)
-    VALUES (?, ?, ?, ?, ?)
+    VALUES (%s, %s, %s, %s, %s)
     """
 
     # Using parameterized queries to avoid SQL injection
