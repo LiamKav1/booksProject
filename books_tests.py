@@ -26,7 +26,7 @@ class booksTests(unittest.TestCase):
             self.assertEqual(x, f.read())
         conn.close()
 
-    def test_insert_book(self):
+    def test_insert_book():
         conn = connect()
         nbook = Book(0195153448, "Classical Mythology", "Mark P. O. Morford", 2002, Oxford Univeristy Press)
         pbook = Book(100, "Harry Potter", "J.K Rowling", 1999, British Publisher)
