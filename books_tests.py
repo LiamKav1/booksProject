@@ -1,4 +1,5 @@
-# Oleg, Liam, Henry
+# Authors: Oleg, Liam, Henry
+
 import unittest
 from tabulate import tabulate
 import books_queries
