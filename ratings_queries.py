@@ -45,10 +45,10 @@ def insert_rating(conn: Connection, rating: Ratings) -> None:
     """
 
     query = """
-    INSERT INTO ratings (isbn, rating)
-    VALUES (%s, %s)
+    INSERT INTO ratings (User_id, ISBN, ratings)
+    VALUES (%s, %s, %s)
     """
 
     # Using parameterized queries to avoid SQL injection
-    conn.execute(query, (rating.isbn, rating.rating))
+    conn.execute(query, (rating.User_id, rating.ISBN, rating.ratings))
     conn.commit()  # Commit the transaction
