@@ -1,7 +1,7 @@
+# Oleg, Liam, Henry
 from psycopg import Connection
 from typing import List, Tuple
 from ratings import Ratings
-
 
 
 def avg_rating_top_ten(conn: Connection) -> List[Tuple[str, int, float]]:
