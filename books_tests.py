@@ -35,4 +35,5 @@ class booksTests(unittest.TestCase):
         pbook = Book("100", "Harry Potter", "J.K Rowling", 1999, "British Publisher") # Book is not in book table
         assert book_queries.insert_book(conn, pbook) == True # Insertion of new book should pass; True
         assert book_queries.insert_book(conn, nbook) == False # Insertion of book already in book table should fail; False
+        conn.close()
         
