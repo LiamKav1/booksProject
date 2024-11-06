@@ -3,7 +3,7 @@
 
 class Ratings:
 
-    def __init__(self, User_id, ISBN, ratings):
+    def __init__(self, User_id: str, ISBN: str, ratings: str):
         self.User_id = User_id
         self.ISBN = ISBN
         self.ratings = ratings
