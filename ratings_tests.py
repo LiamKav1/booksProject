@@ -19,10 +19,10 @@ class TestRatings(unittest.TestCase):
 
     def test_insert_rating(self):
         conn = connect()
-        prating = Ratings("123", "100", "5")
-        nrating = Ratings("274308", "0449205983", "0")
-        assert ratings_queries.insert_rating(conn, prating) == True
-        assert ratings_queries.insert_rating(conn, nrating) == False
+        prating = Ratings("123", "100", "5") # Rating that will be added to ratings table; does not exist yet
+        nrating = Ratings("274308", "0449205983", "0") # Rating exists in rating table
+        assert ratings_queries.insert_rating(conn, prating) == True # Insertion of rating should pass; True
+        assert ratings_queries.insert_rating(conn, nrating) == False #Insertion of rating already in rating table should fail; False
         conn.close()
 
 
