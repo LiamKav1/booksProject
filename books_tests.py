@@ -31,8 +31,8 @@ class booksTests(unittest.TestCase):
 
     def test_insert_book(self):
         conn = connect()
-        nbook = Book("0195153448", "Classical Mythology", "Mark P. O. Morford", 2002, "Oxford Univeristy Press")
-        pbook = Book("100", "Harry Potter", "J.K Rowling", 1999, "British Publisher")
-        assert book_queries.insert_book(conn, pbook) == True
-        assert book_queries.insert_book(conn, nbook) == False
+        nbook = Book("0195153448", "Classical Mythology", "Mark P. O. Morford", 2002, "Oxford Univeristy Press") # Book is already in book table
+        pbook = Book("100", "Harry Potter", "J.K Rowling", 1999, "British Publisher") # Book is not in book table
+        assert book_queries.insert_book(conn, pbook) == True # Insertion of new book should pass; True
+        assert book_queries.insert_book(conn, nbook) == False # Insertion of book already in book table should fail; False
         
