@@ -1,5 +1,6 @@
 ## data class
 # only job of a data class is to aggregate data
+# Oleg, Liam, Henry
 class Book:
 
     ## constructor
