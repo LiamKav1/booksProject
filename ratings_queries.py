@@ -46,7 +46,7 @@ def insert_rating(conn: Connection, rating: Ratings) -> None:
 
     query = """
     INSERT INTO ratings (isbn, rating)
-    VALUES (?, ?)
+    VALUES (%s, %s)
     """
 
     # Using parameterized queries to avoid SQL injection
