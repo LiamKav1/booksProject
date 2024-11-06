@@ -17,3 +17,17 @@
         with open("gold/book_avg_rating.txt", "r") as f:
             self.assertEqual(x, f.read())
         conn.close()
+
+
+
+
+    query = """select avg(Avg_rating), sum(num_books) from
+    (
+        SELECT
+            AVG(CAST(rating AS INTEGER)) AS Avg_Rating,
+            COUNT(isbn) AS num_books
+        FROM books
+        NATURAL JOIN ratings
+        WHERE lower(author) like 'a%%a%%milne'
+        GROUP BY author) as foo;
+             """
