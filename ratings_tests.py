@@ -1,5 +1,6 @@
-from tabulate import tabulate
+# Authors: Oleg, Liam, Henry
 
+from tabulate import tabulate
 import ratings_queries
 import unittest
 from connect import connect
